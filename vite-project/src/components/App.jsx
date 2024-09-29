@@ -18,6 +18,13 @@ function App() {
     localStorage.setItem("listItemData", JSON.stringify(listItems));
   }, [listItems]);
 
+  const getTotal = () => {
+    return listItems.reduce(
+      (accumulator, currentValue) => accumulator + Number(currentValue.sum),
+      0
+    );
+  };
+
   const addListItem = (li) => {
     setListItems((prevListItems) => {
       return [
@@ -43,6 +50,7 @@ function App() {
     <div className="App">
       <h1>Calc</h1>
       <ExpenseList listItems={listItems} removeItem={removeItem} />
+      {listItems.length !== 0 && <div>Total: {getTotal()}</div>}
       <ExpenseForm addListItem={addListItem} />
     </div>
   );
