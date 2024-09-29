@@ -79,8 +79,7 @@ export default function ExpenseForm({ AddListItem }) {
             margin="dense"
             id="date"
             name="date"
-            label="date"
-            type="text"
+            type="date"
             fullWidth
             variant="standard"
           />
