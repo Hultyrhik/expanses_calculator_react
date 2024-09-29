@@ -3,13 +3,14 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function ExpenseListItem({ item, removeItem }) {
   return (
     <ListItem>
       <ListItemAvatar>
         <Avatar>
-          <DeleteForeverIcon onClick={() => removeItem(item.id)} />
+          <EditIcon onClick={() => removeItem(item.id)} />
         </Avatar>
         <Avatar>
           <DeleteForeverIcon onClick={() => removeItem(item.id)} />
