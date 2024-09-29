@@ -4,12 +4,12 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-export default function ExpenseListItem({ item }) {
+export default function ExpenseListItem({ item, removeItem }) {
   return (
     <ListItem>
       <ListItemAvatar>
         <Avatar>
-          <DeleteForeverIcon />
+          <DeleteForeverIcon onClick={() => removeItem(item.id)} />
         </Avatar>
       </ListItemAvatar>
       <ListItemText

@@ -18,7 +18,7 @@ function App() {
     localStorage.setItem("listItemData", JSON.stringify(listItems));
   }, [listItems]);
 
-  const AddListItem = (li) => {
+  const addListItem = (li) => {
     setListItems((prevListItems) => {
       return [
         ...prevListItems,
@@ -33,11 +33,17 @@ function App() {
     });
   };
 
+  const removeItem = (id) => {
+    setListItems((prevList) => {
+      return prevList.filter((item) => item.id !== id);
+    });
+  };
+
   return (
     <div className="App">
       <h1>Calc</h1>
-      <ExpenseList listItems={listItems} />
-      <ExpenseForm AddListItem={AddListItem} />
+      <ExpenseList listItems={listItems} removeItem={removeItem} />
+      <ExpenseForm addListItem={addListItem} />
     </div>
   );
 }

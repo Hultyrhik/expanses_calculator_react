@@ -8,7 +8,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { NumericFormat } from "react-number-format";
 
-export default function ExpenseForm({ AddListItem }) {
+export default function ExpenseForm({ addListItem }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(null);
 
@@ -44,7 +44,7 @@ export default function ExpenseForm({ AddListItem }) {
               date: date,
               description: description,
             };
-            AddListItem(item);
+            addListItem(item);
 
             handleClose();
           },
@@ -65,7 +65,7 @@ export default function ExpenseForm({ AddListItem }) {
           />
           <NumericFormat
             value={value}
-            prefix="$"
+            prefix="₽"
             onValueChange={(values) => {
               setValue(values.value);
             }}
