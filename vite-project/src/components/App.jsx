@@ -2,6 +2,7 @@ import "../App.css";
 
 import ExpenseList from "./ExpenseList";
 import ExpenseForm from "./ExpenseForm";
+import { v4 as uuid } from "uuid";
 
 import { useState, useEffect } from "react";
 
@@ -14,7 +15,7 @@ const getInitialData = () => {
 function App() {
   const [listItems, setListItems] = useState(getInitialData);
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(listItems));
+    localStorage.setItem("listItemData", JSON.stringify(listItems));
   }, [listItems]);
 
   const AddListItem = (li) => {
@@ -35,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <h1>Calc</h1>
-      <ExpenseList />
+      <ExpenseList listItems={listItems} />
       <ExpenseForm AddListItem={AddListItem} />
     </div>
   );

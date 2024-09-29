@@ -30,13 +30,20 @@ export default function ExpenseForm({ AddListItem }) {
           component: "form",
           onSubmit: (event) => {
             event.preventDefault();
-            console.log(event);
-            console.log(event.currentTarget);
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
             const category = formJson.category;
-            console.log("On Submit");
-            console.log(category);
+            const sum = formJson.sum;
+            const date = formJson.date;
+            const description = formJson.description;
+            const item = {
+              category: category,
+              sum: sum,
+              date: date,
+              description: description,
+            };
+            AddListItem(item);
+
             handleClose();
           },
         }}

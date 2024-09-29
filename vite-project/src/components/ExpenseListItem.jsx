@@ -18,7 +18,7 @@ export default function ExpenseListItem({ item }) {
         primary={item.category}
         secondary={
           <section>
-            <p>{item.date.toLocaleDateString("ru-RU")}</p>
+            {/* <p>{item.date.toLocaleDateString("ru-RU")}</p> */}
             <p>{item.sum}</p>
             <p>{item.description}</p>
           </section>
