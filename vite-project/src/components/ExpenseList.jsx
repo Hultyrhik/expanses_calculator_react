@@ -33,13 +33,18 @@ import ExpenseListItem from "./ExpenseListItem";
 //   },
 // ];
 
-export default function ExpenseList({ listItems, removeItem }) {
-  console.log(listItems);
+export default function ExpenseList({ listItems, removeItem, updateItem }) {
+  // console.log(listItems);
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       {listItems.map((item) => {
         return (
-          <ExpenseListItem key={item.id} item={item} removeItem={removeItem} />
+          <ExpenseListItem
+            key={item.id}
+            item={item}
+            removeItem={removeItem}
+            updateItem={updateItem}
+          />
         );
       })}
     </List>

@@ -6,14 +6,30 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { NumericFormat } from "react-number-format";
+import { useState } from "react";
 
-export default function ExpenseDialogForm({
+export default function ExpenseDialogFormUpdate({
   open,
-  value,
   handleClose,
-  addListItem,
-  setValue,
+  updateItem,
+  item,
 }) {
+  const [itemValues, setItemValues] = useState(item);
+  // console.log("itemValues", itemValues);
+
+  const handleChange = (evt) => {
+    const changedField = evt.target.name;
+    const newValue = evt.target.value;
+    // console.log("changedField", changedField);
+    // console.log("newValue", newValue);
+    setItemValues((currData) => {
+      return {
+        ...currData,
+        [changedField]: newValue,
+      };
+    });
+  };
+
   return (
     <Dialog
       open={open}
@@ -27,19 +43,24 @@ export default function ExpenseDialogForm({
           const category = formJson.category;
           const date = formJson.date;
           const description = formJson.description;
+          const sum = formJson.sum;
+
+          // console.log("Sum", sum);
+
           const item = {
+            id: itemValues.id,
             category: category,
-            sum: value,
+            sum: sum,
             date: date,
             description: description,
           };
-          addListItem(item);
-
+          // console.log("updatedItem", item);
+          updateItem(item);
           handleClose();
         },
       }}
     >
-      <DialogTitle>Subscribe</DialogTitle>
+      <DialogTitle>Expense</DialogTitle>
       <DialogContent>
         <DialogContentText>Please add item</DialogContentText>
         <TextField
@@ -51,13 +72,17 @@ export default function ExpenseDialogForm({
           type="text"
           fullWidth
           variant="standard"
+          value={itemValues.category}
+          onChange={handleChange}
         />
         <NumericFormat
-          value={value}
-          prefix="₽"
-          onValueChange={(values) => {
-            setValue(values.value);
-          }}
+          required
+          label="placeholder"
+          value={itemValues.sum}
+          name="sum"
+          id="sum"
+          allowNegative={false}
+          onChange={handleChange}
         />
         <TextField
           required
@@ -67,6 +92,8 @@ export default function ExpenseDialogForm({
           type="date"
           fullWidth
           variant="standard"
+          value={itemValues.date}
+          onChange={handleChange}
         />
         <TextField
           required
@@ -77,11 +104,13 @@ export default function ExpenseDialogForm({
           type="text"
           fullWidth
           variant="standard"
+          value={itemValues.description}
+          onChange={handleChange}
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button type="submit">Add</Button>
+        <Button type="submit">Confirm edit</Button>
       </DialogActions>
     </Dialog>
   );

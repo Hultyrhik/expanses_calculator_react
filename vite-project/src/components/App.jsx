@@ -19,6 +19,8 @@ function App() {
   }, [listItems]);
 
   const getTotal = () => {
+    console.log("listItems!!!!!", listItems);
+
     return listItems.reduce(
       (accumulator, currentValue) => accumulator + Number(currentValue.sum),
       0
@@ -46,10 +48,36 @@ function App() {
     });
   };
 
+  const updateItem = (changedItem) => {
+    // console.log("changedItem", changedItem);
+    setListItems((prevList) => {
+      return prevList.map((item) => {
+        // console.log("one of items", item);
+        if (item.id === changedItem.id) {
+          // console.log("item.id === changedItem.id", item);
+          return {
+            id: changedItem.id,
+            category: changedItem.category,
+            sum: changedItem.sum,
+            date: changedItem.date,
+            description: changedItem.description,
+          };
+        } else {
+          // console.log(`${item.id} === ${changedItem.id}`);
+          return item;
+        }
+      });
+    });
+  };
+
   return (
     <div className="App">
       <h1>Calc</h1>
-      <ExpenseList listItems={listItems} removeItem={removeItem} />
+      <ExpenseList
+        listItems={listItems}
+        removeItem={removeItem}
+        updateItem={updateItem}
+      />
       {listItems.length !== 0 && <div>Total: {getTotal()}</div>}
       <ExpenseForm addListItem={addListItem} />
     </div>
