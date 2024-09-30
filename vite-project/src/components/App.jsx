@@ -5,6 +5,7 @@ import ExpenseForm from "./ExpenseForm";
 import ExpenseChart from "./ExpenseChart";
 import ExpenseListSort from "./ExpenseListSort";
 import { v4 as uuid } from "uuid";
+import { stringToDate } from "../funcs/utilis";
 
 import { useState, useEffect } from "react";
 
@@ -82,11 +83,20 @@ function App() {
     });
   };
 
+  const sortByDate = () => {
+    setListItems((prevList) => {
+      prevList.sort((a, b) => stringToDate(b.date) - stringToDate(a.date));
+      return [...prevList];
+    });
+  };
+
   return (
     <div className="App">
       <h1>Calc</h1>
       {listItems.length !== 0 && <ExpenseChart listItems={listItems} />}
-      {listItems.length !== 0 && <ExpenseListSort sortBySum={sortBySum} />}
+      {listItems.length !== 0 && (
+        <ExpenseListSort sortBySum={sortBySum} sortByDate={sortByDate} />
+      )}
       <ExpenseList
         listItems={listItems}
         removeItem={removeItem}
