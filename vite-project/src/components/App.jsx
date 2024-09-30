@@ -74,7 +74,7 @@ function App() {
   return (
     <div className="App">
       <h1>Calc</h1>
-      <ExpenseChart listItems={listItems} />
+      {listItems.length !== 0 && <ExpenseChart listItems={listItems} />}
       <ExpenseList
         listItems={listItems}
         removeItem={removeItem}
