@@ -2,6 +2,7 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import PieChart from "./PieChart";
 import { BarChart } from "./BarChart";
+import { stringYearMonthToDate } from "../funcs/utilis";
 
 Chart.register(CategoryScale);
 
@@ -38,16 +39,17 @@ export default function ExpenseChart({ listItems }) {
     }
   });
 
-  console.log("sumByTime", sumByTime);
-
-  const byYear = Object.keys(sumByTime);
+  const byYearMonth = Object.keys(sumByTime);
+  byYearMonth.sort(
+    (a, b) => stringYearMonthToDate(a) - stringYearMonthToDate(b)
+  );
 
   const chartData = {
-    labels: byYear,
+    labels: byYearMonth,
     datasets: [
       {
         label: "Expenses ",
-        data: byYear.map((year) => sumByTime[year]),
+        data: byYearMonth.map((year) => sumByTime[year]),
         backgroundColor: [
           "rgba(75,192,192,1)",
           "&quot;#ecf0f1",

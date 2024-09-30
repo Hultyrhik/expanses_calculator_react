@@ -76,16 +76,22 @@ function App() {
     });
   };
 
-  const sortBySum = () => {
+  const sortBySum = (isReverse) => {
     setListItems((prevList) => {
       prevList.sort((a, b) => b.sum - a.sum);
+      if (isReverse === true) {
+        prevList.reverse();
+      }
       return [...prevList];
     });
   };
 
-  const sortByDate = () => {
+  const sortByDate = (isReverse) => {
     setListItems((prevList) => {
       prevList.sort((a, b) => stringToDate(b.date) - stringToDate(a.date));
+      if (isReverse === true) {
+        prevList.reverse();
+      }
       return [...prevList];
     });
   };

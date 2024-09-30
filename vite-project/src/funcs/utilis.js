@@ -6,4 +6,12 @@ function stringToDate(str) {
   return date;
 }
 
-export { stringToDate };
+function stringYearMonthToDate(str) {
+  const dateElems = str.split(".");
+  const date = new Date(dateElems[1], dateElems[0]);
+  console.log("dateElems????", dateElems);
+  console.log("date????", date);
+  return date;
+}
+
+export { stringToDate, stringYearMonthToDate };
