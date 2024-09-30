@@ -38,20 +38,22 @@ export default function ExpenseList({
   removeItem,
   updateItem,
   categories,
+  filterByCategory,
 }) {
   // console.log(listItems);
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       {listItems.map((item) => {
-        return (
-          <ExpenseListItem
-            key={item.id}
-            item={item}
-            removeItem={removeItem}
-            updateItem={updateItem}
-            categories={categories}
-          />
-        );
+        if (filterByCategory === "All" || filterByCategory === item.category)
+          return (
+            <ExpenseListItem
+              key={item.id}
+              item={item}
+              removeItem={removeItem}
+              updateItem={updateItem}
+              categories={categories}
+            />
+          );
       })}
     </List>
   );

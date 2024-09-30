@@ -4,6 +4,7 @@ import ExpenseList from "./ExpenseList";
 import ExpenseForm from "./ExpenseForm";
 import ExpenseChart from "./ExpenseChart";
 import ExpenseListSort from "./ExpenseListSort";
+import SelectCategory from "./SelectCategory";
 import { v4 as uuid } from "uuid";
 import { stringToDate } from "../funcs/utilis";
 
@@ -20,6 +21,7 @@ const categories = ["home", "school", "car", "health", "shopping", "pet"];
 
 function App() {
   const [listItems, setListItems] = useState(getInitialData);
+  const [filterByCategory, setFilterByCategory] = useState("All");
   useEffect(() => {
     localStorage.setItem("listItemData", JSON.stringify(listItems));
   }, [listItems]);
@@ -105,11 +107,19 @@ function App() {
       {listItems.length !== 0 && (
         <ExpenseListSort sortBySum={sortBySum} sortByDate={sortByDate} />
       )}
+      {listItems.length !== 0 && (
+        <SelectCategory
+          filterByCategory={filterByCategory}
+          setFilterByCategory={setFilterByCategory}
+          categories={categories}
+        />
+      )}
       <ExpenseList
         listItems={listItems}
         removeItem={removeItem}
         updateItem={updateItem}
         categories={categories}
+        filterByCategory={filterByCategory}
       />
 
       {listItems.length !== 0 && <div>Total: {getTotal()}</div>}
