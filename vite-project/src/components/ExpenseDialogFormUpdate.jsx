@@ -43,12 +43,7 @@ export default function ExpenseDialogFormUpdate({
           const category = formJson.category;
           const description = formJson.description;
           const sum = formJson.sum;
-          const dateElements = formJson.date.split("-");
-          const date = new Date(
-            dateElements[0],
-            dateElements[1],
-            dateElements[2]
-          );
+          const date = formJson.date;
 
           // console.log("Sum", sum);
 

@@ -27,8 +27,9 @@ export default function ExpenseChart({ listItems }) {
   let sumByTime = {};
 
   listItems.map((data) => {
-    const year = data.date.getFullYear().toString();
-    const month = data.date.getMonth().toString();
+    const dateElements = data.date.split("-");
+    const year = dateElements[0];
+    const month = dateElements[1];
     const monthYear = month + "." + year;
     if (sumByTime[monthYear] === undefined) {
       sumByTime[monthYear] = Number(data.sum);

@@ -40,7 +40,7 @@ export default function ExpenseListItem({ item, removeItem, updateItem }) {
         primary={item.category}
         secondary={
           <section>
-            <p>Date: {item.date.getMonth() + "." + item.date.getFullYear()}</p>
+            <p>Date: {item.date}</p>
             <p>Sum: {item.sum}</p>
             <p>Description: {item.description}</p>
           </section>

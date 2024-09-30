@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 const getInitialData = () => {
   const data = JSON.parse(localStorage.getItem("listItemData"));
   if (!data) return [];
+
   return data;
 };
 
