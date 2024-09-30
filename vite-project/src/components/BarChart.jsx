@@ -1,10 +1,9 @@
-import { Pie } from "react-chartjs-2";
-
-function PieChart({ chartData }) {
+import { Bar } from "react-chartjs-2";
+export const BarChart = ({ chartData }) => {
   return (
     <div className="chart-container">
-      <h2 style={{ textAlign: "center" }}>Pie Chart</h2>
-      <Pie
+      <h2 style={{ textAlign: "center" }}>Bar Chart</h2>
+      <Bar
         data={chartData}
         options={{
           plugins: {
@@ -12,10 +11,12 @@ function PieChart({ chartData }) {
               display: true,
               text: "Expenses by year and month",
             },
+            legend: {
+              display: false,
+            },
           },
         }}
       />
     </div>
   );
-}
-export default PieChart;
+};

@@ -2,6 +2,7 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { useState } from "react";
 import PieChart from "./PieChart";
+import { BarChart } from "./BarChart";
 
 Chart.register(CategoryScale);
 
@@ -24,15 +25,29 @@ const data = {
 };
 
 export default function ExpenseChart({ listItems }) {
+  let sumByTime = {};
+
+  const dataByYearAndMonth = listItems.map((data) => {
+    const date = data.date.split("-");
+    const monthYear = date[1] + "." + date[0];
+    if (sumByTime[monthYear] === undefined) {
+      sumByTime[monthYear] = Number(data.sum);
+    } else {
+      sumByTime[monthYear] += Number(data.sum);
+    }
+  });
+
+  console.log("dataByYearAndMonth", dataByYearAndMonth);
+  console.log("sumByTime", sumByTime);
+
+  const byYear = Object.keys(sumByTime);
+
   const chartData = {
-    labels: listItems.map((data) => {
-      const date = data.date.split("-");
-      return date[1];
-    }),
+    labels: byYear,
     datasets: [
       {
         label: "Expenses ",
-        data: listItems.map((data) => data.sum),
+        data: byYear.map((year) => sumByTime[year]),
         backgroundColor: [
           "rgba(75,192,192,1)",
           "&quot;#ecf0f1",
@@ -53,6 +68,7 @@ export default function ExpenseChart({ listItems }) {
   return (
     <div className="App">
       <PieChart chartData={chartData} />
+      <BarChart chartData={chartData} />
     </div>
   );
 }
