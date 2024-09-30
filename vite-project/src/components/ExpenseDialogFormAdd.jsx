@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import { NumericFormat } from "react-number-format";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
 
 export default function ExpenseDialogFormAdd({
   open,
@@ -67,18 +68,19 @@ export default function ExpenseDialogFormAdd({
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select> */}
-        <div>
-          <span>Sum </span>
-          <NumericFormat
-            label="placeholder"
-            value={value}
-            // prefix="₽"
-            onValueChange={(values) => {
-              setValue(values.value);
-            }}
-            allowNegative={false}
-          />
-        </div>
+
+        <InputLabel htmlFor="sum">Sum</InputLabel>
+        <NumericFormat
+          label="placeholder"
+          value={value}
+          // prefix="₽"
+          onValueChange={(values) => {
+            setValue(values.value);
+          }}
+          allowNegative={false}
+          id="sum"
+        />
+
         <TextField
           required
           margin="dense"

@@ -7,6 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { NumericFormat } from "react-number-format";
 import { useState } from "react";
+import InputLabel from "@mui/material/InputLabel";
 
 export default function ExpenseDialogFormUpdate({
   open,
@@ -75,6 +76,7 @@ export default function ExpenseDialogFormUpdate({
           value={itemValues.category}
           onChange={handleChange}
         />
+        <InputLabel htmlFor="sum">Sum</InputLabel>
         <NumericFormat
           required
           label="placeholder"

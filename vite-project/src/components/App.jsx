@@ -3,6 +3,7 @@ import "../App.css";
 import ExpenseList from "./ExpenseList";
 import ExpenseForm from "./ExpenseForm";
 import ExpenseChart from "./ExpenseChart";
+import ExpenseListSort from "./ExpenseListSort";
 import { v4 as uuid } from "uuid";
 
 import { useState, useEffect } from "react";
@@ -74,15 +75,24 @@ function App() {
     });
   };
 
+  const sortBySum = () => {
+    setListItems((prevList) => {
+      prevList.sort((a, b) => b.sum - a.sum);
+      return [...prevList];
+    });
+  };
+
   return (
     <div className="App">
       <h1>Calc</h1>
       {listItems.length !== 0 && <ExpenseChart listItems={listItems} />}
+      {listItems.length !== 0 && <ExpenseListSort sortBySum={sortBySum} />}
       <ExpenseList
         listItems={listItems}
         removeItem={removeItem}
         updateItem={updateItem}
       />
+
       {listItems.length !== 0 && <div>Total: {getTotal()}</div>}
       <ExpenseForm addListItem={addListItem} />
     </div>
