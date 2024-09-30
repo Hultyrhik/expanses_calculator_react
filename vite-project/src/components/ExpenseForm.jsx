@@ -2,9 +2,10 @@ import { useState, Fragment } from "react";
 import Button from "@mui/material/Button";
 import ExpenseDialogFormAdd from "./ExpenseDialogFormAdd";
 
-export default function ExpenseForm({ addListItem }) {
+export default function ExpenseForm({ addListItem, categories }) {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
+  const [sum, setSum] = useState(null);
+  const [category, setCategory] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -12,7 +13,8 @@ export default function ExpenseForm({ addListItem }) {
 
   const handleClose = () => {
     setOpen(false);
-    setValue(null);
+    setSum(null);
+    setCategory("");
   };
 
   return (
@@ -22,10 +24,13 @@ export default function ExpenseForm({ addListItem }) {
       </Button>
       <ExpenseDialogFormAdd
         open={open}
-        value={value}
+        sum={sum}
         handleClose={handleClose}
         addListItem={addListItem}
-        setValue={setValue}
+        setSum={setSum}
+        categories={categories}
+        category={category}
+        setCategory={setCategory}
       />
     </Fragment>
   );

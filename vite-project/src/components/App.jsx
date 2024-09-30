@@ -16,6 +16,8 @@ const getInitialData = () => {
   return data;
 };
 
+const categories = ["home", "school", "car", "health", "shopping", "pet"];
+
 function App() {
   const [listItems, setListItems] = useState(getInitialData);
   useEffect(() => {
@@ -107,10 +109,11 @@ function App() {
         listItems={listItems}
         removeItem={removeItem}
         updateItem={updateItem}
+        categories={categories}
       />
 
       {listItems.length !== 0 && <div>Total: {getTotal()}</div>}
-      <ExpenseForm addListItem={addListItem} />
+      <ExpenseForm addListItem={addListItem} categories={categories} />
     </div>
   );
 }

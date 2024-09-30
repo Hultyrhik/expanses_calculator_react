@@ -8,12 +8,15 @@ import Button from "@mui/material/Button";
 import { NumericFormat } from "react-number-format";
 import { useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 
 export default function ExpenseDialogFormUpdate({
   open,
   handleClose,
   updateItem,
   item,
+  categories,
 }) {
   const [itemValues, setItemValues] = useState(item);
   // console.log("itemValues", itemValues);
@@ -64,7 +67,7 @@ export default function ExpenseDialogFormUpdate({
       <DialogTitle>Expense</DialogTitle>
       <DialogContent>
         <DialogContentText>Please add item</DialogContentText>
-        <TextField
+        {/* <TextField
           required
           margin="dense"
           id="category"
@@ -75,7 +78,21 @@ export default function ExpenseDialogFormUpdate({
           variant="standard"
           value={itemValues.category}
           onChange={handleChange}
-        />
+        /> */}
+        <Select
+          labelId="category-label"
+          id="category"
+          name="category"
+          value={itemValues.category}
+          onChange={handleChange}
+          fullWidth
+        >
+          {categories.map((category, idx) => (
+            <MenuItem key={idx} value={category}>
+              {category}
+            </MenuItem>
+          ))}
+        </Select>
         <InputLabel htmlFor="sum">Sum</InputLabel>
         <NumericFormat
           required

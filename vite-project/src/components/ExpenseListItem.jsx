@@ -7,7 +7,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import ExpenseDialogFormUpdate from "./ExpenseDialogFormUpdate";
 
-export default function ExpenseListItem({ item, removeItem, updateItem }) {
+export default function ExpenseListItem({
+  item,
+  removeItem,
+  updateItem,
+  categories,
+}) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -29,6 +34,7 @@ export default function ExpenseListItem({ item, removeItem, updateItem }) {
           handleClose={handleClose}
           updateItem={updateItem}
           item={item}
+          categories={categories}
         />
         <Avatar>
           <DeleteForeverIcon onClick={() => removeItem(item.id)} />

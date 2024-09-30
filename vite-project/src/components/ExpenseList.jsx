@@ -33,7 +33,12 @@ import ExpenseListItem from "./ExpenseListItem";
 //   },
 // ];
 
-export default function ExpenseList({ listItems, removeItem, updateItem }) {
+export default function ExpenseList({
+  listItems,
+  removeItem,
+  updateItem,
+  categories,
+}) {
   // console.log(listItems);
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
@@ -44,6 +49,7 @@ export default function ExpenseList({ listItems, removeItem, updateItem }) {
             item={item}
             removeItem={removeItem}
             updateItem={updateItem}
+            categories={categories}
           />
         );
       })}

@@ -12,10 +12,13 @@ import InputLabel from "@mui/material/InputLabel";
 
 export default function ExpenseDialogFormAdd({
   open,
-  value,
+  sum,
   handleClose,
   addListItem,
-  setValue,
+  setSum,
+  categories,
+  category,
+  setCategory,
 }) {
   return (
     <Dialog
@@ -27,14 +30,13 @@ export default function ExpenseDialogFormAdd({
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
           const formJson = Object.fromEntries(formData.entries());
-          const category = formJson.category;
 
           const date = formJson.date;
 
           const description = formJson.description;
           const item = {
             category: category,
-            sum: value,
+            sum: sum,
             date: date,
             description: description,
           };
@@ -47,7 +49,7 @@ export default function ExpenseDialogFormAdd({
       <DialogContent>
         <DialogContentText>Please add item</DialogContentText>
 
-        <TextField
+        {/* <TextField
           required
           margin="dense"
           id="category"
@@ -56,26 +58,31 @@ export default function ExpenseDialogFormAdd({
           type="text"
           fullWidth
           variant="standard"
-        />
-        {/* <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          // value={age}
-          label="Age"
-          // onChange={handleChange}
+        /> */}
+        <InputLabel id="category-label">Category</InputLabel>
+        <Select
+          labelId="category-label"
+          id="category"
+          value={category}
+          onChange={(event) => {
+            setCategory(event.target.value);
+          }}
+          fullWidth
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select> */}
+          {categories.map((category, idx) => (
+            <MenuItem key={idx} value={category}>
+              {category}
+            </MenuItem>
+          ))}
+        </Select>
 
         <InputLabel htmlFor="sum">Sum</InputLabel>
         <NumericFormat
           label="placeholder"
-          value={value}
+          value={sum}
           // prefix="₽"
           onValueChange={(values) => {
-            setValue(values.value);
+            setSum(values.value);
           }}
           allowNegative={false}
           id="sum"
