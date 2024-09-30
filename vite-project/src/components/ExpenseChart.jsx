@@ -44,7 +44,7 @@ export default function ExpenseChart({ listItems }) {
     (a, b) => stringYearMonthToDate(a) - stringYearMonthToDate(b)
   );
 
-  const chartData = {
+  const chartDataByDate = {
     labels: byYearMonth,
     datasets: [
       {
@@ -63,14 +63,44 @@ export default function ExpenseChart({ listItems }) {
     ],
   };
 
-  console.log("listItems", listItems);
-  console.log("chartData", chartData);
-  console.log("type of chartData", typeof chartData.labels[0]);
+  let sumByCategory = {};
+  listItems.map((data) => {
+    console.log("???map-map", data);
+
+    if (sumByCategory[data.category] === undefined) {
+      sumByCategory[data.category] = Number(data.sum);
+    } else {
+      sumByCategory[data.category] += Number(data.sum);
+    }
+  });
+
+  const byByCategory = Object.keys(sumByCategory);
+
+  console.log("???sumByCategory", sumByCategory);
+
+  const chartDataByCategory = {
+    labels: byByCategory,
+    datasets: [
+      {
+        label: "Expenses ",
+        data: byByCategory.map((catogory) => sumByCategory[catogory]),
+        backgroundColor: [
+          "rgba(75,192,192,1)",
+          "&quot;#ecf0f1",
+          "#50AF95",
+          "#f3ba2f",
+          "#2a71d0",
+        ],
+        borderColor: "black",
+        borderWidth: 2,
+      },
+    ],
+  };
 
   return (
     <div>
-      <PieChart chartData={chartData} />
-      <BarChart chartData={chartData} />
+      <PieChart chartData={chartDataByCategory} />
+      <BarChart chartData={chartDataByDate} />
     </div>
   );
 }

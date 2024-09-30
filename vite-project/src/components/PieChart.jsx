@@ -10,7 +10,7 @@ function PieChart({ chartData }) {
           plugins: {
             title: {
               display: true,
-              text: "Expenses by year and month",
+              text: "Expenses by category",
             },
           },
         }}
