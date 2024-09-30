@@ -26,9 +26,10 @@ Chart.register(CategoryScale);
 export default function ExpenseChart({ listItems }) {
   let sumByTime = {};
 
-  const dataByYearAndMonth = listItems.map((data) => {
-    const date = data.date.split("-");
-    const monthYear = date[1] + "." + date[0];
+  listItems.map((data) => {
+    const year = data.date.getFullYear().toString();
+    const month = data.date.getMonth().toString();
+    const monthYear = month + "." + year;
     if (sumByTime[monthYear] === undefined) {
       sumByTime[monthYear] = Number(data.sum);
     } else {
@@ -36,7 +37,6 @@ export default function ExpenseChart({ listItems }) {
     }
   });
 
-  console.log("dataByYearAndMonth", dataByYearAndMonth);
   console.log("sumByTime", sumByTime);
 
   const byYear = Object.keys(sumByTime);

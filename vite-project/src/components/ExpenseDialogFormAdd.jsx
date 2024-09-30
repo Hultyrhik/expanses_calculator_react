@@ -25,7 +25,17 @@ export default function ExpenseDialogFormAdd({
           const formData = new FormData(event.currentTarget);
           const formJson = Object.fromEntries(formData.entries());
           const category = formJson.category;
-          const date = formJson.date;
+
+          const dateElements = formJson.date.split("-");
+          const date = new Date(
+            dateElements[0],
+            dateElements[1],
+            dateElements[2]
+          );
+
+          console.log("date", date);
+          console.log("typeof date", typeof date);
+
           const description = formJson.description;
           const item = {
             category: category,

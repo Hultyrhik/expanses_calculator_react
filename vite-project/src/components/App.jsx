@@ -29,6 +29,8 @@ function App() {
   };
 
   const addListItem = (li) => {
+    console.log("li", li);
+
     setListItems((prevListItems) => {
       return [
         ...prevListItems,
