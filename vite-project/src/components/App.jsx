@@ -2,6 +2,7 @@ import "../App.css";
 
 import ExpenseList from "./ExpenseList";
 import ExpenseForm from "./ExpenseForm";
+import ExpenseChart from "./ExpenseChart";
 import { v4 as uuid } from "uuid";
 
 import { useState, useEffect } from "react";
@@ -73,6 +74,7 @@ function App() {
   return (
     <div className="App">
       <h1>Calc</h1>
+      <ExpenseChart listItems={listItems} />
       <ExpenseList
         listItems={listItems}
         removeItem={removeItem}
