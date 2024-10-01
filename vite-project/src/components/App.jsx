@@ -21,15 +21,15 @@ const categories = ["home", "school", "car", "health", "shopping", "pet"];
 
 function App() {
   const [listItems, setListItems] = useState(getInitialData);
+  const [listItemsBuffer, setListItemsBuffer] = useState(listItems);
+
   const [filterByCategory, setFilterByCategory] = useState("All");
   useEffect(() => {
     localStorage.setItem("listItemData", JSON.stringify(listItems));
   }, [listItems]);
 
   const getTotal = () => {
-    console.log("listItems!!!!!", listItems);
-
-    return listItems.reduce(
+    return listItemsBuffer.reduce(
       (accumulator, currentValue) => accumulator + Number(currentValue.sum),
       0
     );
@@ -39,7 +39,7 @@ function App() {
     console.log("li", li);
 
     setListItems((prevListItems) => {
-      return [
+      const new_data = [
         ...prevListItems,
         {
           id: uuid(),
@@ -49,19 +49,27 @@ function App() {
           description: li.description,
         },
       ];
+      setListItemsBuffer(() => {
+        return [...new_data];
+      });
+      return new_data;
     });
   };
 
   const removeItem = (id) => {
     setListItems((prevList) => {
-      return prevList.filter((item) => item.id !== id);
+      const new_data = prevList.filter((item) => item.id !== id);
+      setListItemsBuffer(() => {
+        return [...new_data];
+      });
+      return new_data;
     });
   };
 
   const updateItem = (changedItem) => {
     // console.log("changedItem", changedItem);
     setListItems((prevList) => {
-      return prevList.map((item) => {
+      const new_data = prevList.map((item) => {
         // console.log("one of items", item);
         if (item.id === changedItem.id) {
           // console.log("item.id === changedItem.id", item);
@@ -77,11 +85,15 @@ function App() {
           return item;
         }
       });
+      setListItemsBuffer(() => {
+        return [...new_data];
+      });
+      return new_data;
     });
   };
 
   const sortBySum = (isReverse) => {
-    setListItems((prevList) => {
+    setListItemsBuffer((prevList) => {
       prevList.sort((a, b) => b.sum - a.sum);
       if (isReverse === true) {
         prevList.reverse();
@@ -91,7 +103,7 @@ function App() {
   };
 
   const sortByDate = (isReverse) => {
-    setListItems((prevList) => {
+    setListItemsBuffer((prevList) => {
       prevList.sort((a, b) => stringToDate(b.date) - stringToDate(a.date));
       if (isReverse === true) {
         prevList.reverse();
@@ -100,11 +112,27 @@ function App() {
     });
   };
 
+  const filterByCategoryInSelect = (category) => {
+    setListItemsBuffer(() => {
+      return [...listItems];
+    });
+    if (category === "All") {
+      return;
+    } else {
+      setListItemsBuffer((prevList) => {
+        const new_data = prevList.filter((item) => item.category == category);
+        return new_data;
+      });
+    }
+  };
+
   return (
     <div className="App">
       <h1>Calc</h1>
-      {listItems.length !== 0 && <ExpenseChart listItems={listItems} />}
-      {listItems.length !== 0 && (
+      {listItemsBuffer.length !== 0 && (
+        <ExpenseChart listItems={listItemsBuffer} />
+      )}
+      {listItemsBuffer.length !== 0 && (
         <ExpenseListSort sortBySum={sortBySum} sortByDate={sortByDate} />
       )}
       {listItems.length !== 0 && (
@@ -112,17 +140,18 @@ function App() {
           filterByCategory={filterByCategory}
           setFilterByCategory={setFilterByCategory}
           categories={categories}
+          filterByCategoryInSelect={filterByCategoryInSelect}
         />
       )}
       <ExpenseList
-        listItems={listItems}
+        listItems={listItemsBuffer}
         removeItem={removeItem}
         updateItem={updateItem}
         categories={categories}
         filterByCategory={filterByCategory}
       />
 
-      {listItems.length !== 0 && <div>Total: {getTotal()}</div>}
+      {listItemsBuffer.length !== 0 && <div>Total: {getTotal()}</div>}
       <ExpenseForm addListItem={addListItem} categories={categories} />
     </div>
   );
