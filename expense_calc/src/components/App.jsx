@@ -176,7 +176,7 @@ function App() {
         categories={categories}
         filterByCategory={filterByCategory}
       />
-      {listItemsBuffer.length !== 0 && <div>Total: {getTotal()}</div>}
+      {listItemsBuffer.length !== 0 && <div>Затраты всего: {getTotal()}</div>}
       <ExpenseForm addListItem={addListItem} categories={categories} />
     </ThemeProvider>
   );
