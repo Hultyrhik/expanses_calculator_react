@@ -50,6 +50,7 @@ export default function ExpenseDialogFormAdd({
         <DialogContentText>Please add item</DialogContentText>
         <InputLabel id="category-label">Category</InputLabel>
         <Select
+          required
           labelId="category-label"
           id="category"
           value={category}
@@ -67,6 +68,7 @@ export default function ExpenseDialogFormAdd({
 
         <InputLabel htmlFor="sum">Sum</InputLabel>
         <NumericFormat
+          required
           label="placeholder"
           value={sum}
           onValueChange={(values) => {

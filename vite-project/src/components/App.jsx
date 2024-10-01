@@ -27,7 +27,7 @@ function App() {
 
   const [filterByCategory, setFilterByCategory] = useState("All");
 
-  const [toggleDarkMode, setToggleDarkMode] = useState(true);
+  const [toggleDarkMode, setToggleDarkMode] = useState(false);
 
   const toggleDarkTheme = () => {
     setToggleDarkMode(!toggleDarkMode);
@@ -68,7 +68,9 @@ function App() {
           description: li.description,
         },
       ];
-      filterByCategoryInSelect(filterByCategory);
+      setListItemsBuffer(() => {
+        return [...new_data];
+      });
       return new_data;
     });
   };
@@ -76,7 +78,9 @@ function App() {
   const removeItem = (id) => {
     setListItems((prevList) => {
       const new_data = prevList.filter((item) => item.id !== id);
-      filterByCategoryInSelect(filterByCategory);
+      setListItemsBuffer(() => {
+        return [...new_data];
+      });
       return new_data;
     });
   };
@@ -96,7 +100,9 @@ function App() {
           return item;
         }
       });
-      filterByCategoryInSelect(filterByCategory);
+      setListItemsBuffer(() => {
+        return [...new_data];
+      });
       return new_data;
     });
   };
