@@ -129,12 +129,6 @@ function App() {
   return (
     <div className="App">
       <h1>Calc</h1>
-      {listItemsBuffer.length !== 0 && (
-        <ExpenseChart listItems={listItemsBuffer} />
-      )}
-      {listItemsBuffer.length !== 0 && (
-        <ExpenseListSort sortBySum={sortBySum} sortByDate={sortByDate} />
-      )}
       {listItems.length !== 0 && (
         <SelectCategory
           filterByCategory={filterByCategory}
@@ -142,6 +136,12 @@ function App() {
           categories={categories}
           filterByCategoryInSelect={filterByCategoryInSelect}
         />
+      )}
+      {listItemsBuffer.length !== 0 && (
+        <ExpenseChart listItems={listItemsBuffer} />
+      )}
+      {listItemsBuffer.length !== 0 && (
+        <ExpenseListSort sortBySum={sortBySum} sortByDate={sortByDate} />
       )}
       <ExpenseList
         listItems={listItemsBuffer}
