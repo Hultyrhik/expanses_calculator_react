@@ -40,7 +40,7 @@ export default function ExpenseChart({ listItems }) {
     labels: byYearMonth,
     datasets: [
       {
-        label: "Expenses ",
+        label: "Затраты",
         data: byYearMonth.map((year) => sumByTime[year]),
         backgroundColor: colors,
         borderColor: "black",
@@ -64,7 +64,7 @@ export default function ExpenseChart({ listItems }) {
     labels: byByCategory,
     datasets: [
       {
-        label: "Expenses ",
+        label: "Затраты",
         data: byByCategory.map((catogory) => sumByCategory[catogory]),
         backgroundColor: colors,
         borderColor: "black",

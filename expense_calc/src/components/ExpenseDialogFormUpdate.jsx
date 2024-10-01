@@ -56,9 +56,9 @@ export default function ExpenseDialogFormUpdate({
         },
       }}
     >
-      <DialogTitle>Expense</DialogTitle>
+      <DialogTitle>Затраты</DialogTitle>
       <DialogContent>
-        <DialogContentText>Please add item</DialogContentText>
+        <DialogContentText>Пожалуйста добавьте расход</DialogContentText>
         <Select
           labelId="category-label"
           id="category"
@@ -108,8 +108,8 @@ export default function ExpenseDialogFormUpdate({
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button type="submit">Confirm edit</Button>
+        <Button onClick={handleClose}>Отменить</Button>
+        <Button type="submit">Обновить</Button>
       </DialogActions>
     </Dialog>
   );

@@ -45,10 +45,10 @@ export default function ExpenseDialogFormAdd({
         },
       }}
     >
-      <DialogTitle>Expense</DialogTitle>
+      <DialogTitle>Затраты</DialogTitle>
       <DialogContent>
-        <DialogContentText>Please add item</DialogContentText>
-        <InputLabel id="category-label">Category</InputLabel>
+        <DialogContentText>Пожалуйста добавьте расход</DialogContentText>
+        <InputLabel id="category-label">Категория</InputLabel>
         <Select
           required
           labelId="category-label"
@@ -66,7 +66,7 @@ export default function ExpenseDialogFormAdd({
           ))}
         </Select>
 
-        <InputLabel htmlFor="sum">Sum</InputLabel>
+        <InputLabel htmlFor="sum">Сумма</InputLabel>
         <NumericFormat
           required
           label="placeholder"
@@ -92,15 +92,15 @@ export default function ExpenseDialogFormAdd({
           margin="dense"
           id="description"
           name="description"
-          label="description"
+          label="Описание"
           type="text"
           fullWidth
           variant="standard"
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button type="submit">Add</Button>
+        <Button onClick={handleClose}>Отменить</Button>
+        <Button type="submit">Добавить</Button>
       </DialogActions>
     </Dialog>
   );

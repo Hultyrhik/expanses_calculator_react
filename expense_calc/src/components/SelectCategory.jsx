@@ -10,9 +10,9 @@ export default function SelectCategory({
 }) {
   return (
     <Box>
-      <h4>Filter by category</h4>
+      <h4>Отображение по категории</h4>
       <Select
-        defaultValue="All"
+        defaultValue="Все категории"
         labelId="category-label"
         id="category"
         value={filterByCategory}
@@ -23,8 +23,8 @@ export default function SelectCategory({
         }}
         fullWidth
       >
-        <MenuItem key={-1} value={"All"}>
-          All
+        <MenuItem key={-1} value={"Все категории"}>
+          Все категории
         </MenuItem>
         {categories.map((category, idx) => (
           <MenuItem key={idx} value={category}>

@@ -20,7 +20,7 @@ export default function ExpenseForm({ addListItem, categories }) {
   return (
     <Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Add item
+        Добавить расход
       </Button>
       <ExpenseDialogFormAdd
         open={open}

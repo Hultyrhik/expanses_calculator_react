@@ -19,13 +19,20 @@ const getInitialData = () => {
   return data;
 };
 
-const categories = ["home", "school", "car", "health", "shopping", "pet"];
+const categories = [
+  "дом",
+  "школа",
+  "автомобиль",
+  "здоровье",
+  "покупки",
+  "домашние питомцы",
+];
 
 function App() {
   const [listItems, setListItems] = useState(getInitialData);
   const [listItemsBuffer, setListItemsBuffer] = useState(listItems);
 
-  const [filterByCategory, setFilterByCategory] = useState("All");
+  const [filterByCategory, setFilterByCategory] = useState("Все категории");
 
   const [toggleDarkMode, setToggleDarkMode] = useState(false);
 
@@ -131,7 +138,7 @@ function App() {
     setListItemsBuffer(() => {
       return [...listItems];
     });
-    if (category === "All") {
+    if (category === "Все категории") {
       return;
     } else {
       setListItemsBuffer((prevList) => {
@@ -144,9 +151,9 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <h1>Calc</h1>
+      <h1>Калькулятор расходов</h1>
 
-      <div>Change mode</div>
+      <div>Сменить тему</div>
       <Switch checked={toggleDarkMode} onChange={toggleDarkTheme} />
       {listItems.length !== 0 && (
         <SelectCategory

@@ -46,9 +46,9 @@ export default function ExpenseListItem({
         primary={item.category}
         secondary={
           <section>
-            <p>Date: {item.date}</p>
-            <p>Sum: {item.sum}</p>
-            <p>Description: {item.description}</p>
+            <p>Дата: {item.date}</p>
+            <p>Сумма: {item.sum}</p>
+            <p>Описание: {item.description}</p>
           </section>
         }
       />

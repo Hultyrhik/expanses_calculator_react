@@ -37,8 +37,8 @@ export default function ExpenseListSort({ sortBySum, sortByDate }) {
 
   return (
     <ButtonGroup variant="contained" aria-label="Basic button group">
-      <Button onClick={handleButtonDate}>Sort by Date {arrowDate}</Button>
-      <Button onClick={handleButtonSum}>Sort by Sum {arrowSum}</Button>
+      <Button onClick={handleButtonDate}>Сорт. по дате {arrowDate}</Button>
+      <Button onClick={handleButtonSum}>Сорт. по сумме {arrowSum}</Button>
     </ButtonGroup>
   );
 }

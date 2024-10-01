@@ -27,7 +27,7 @@ const DownloadCSV = ({ data, fileName }) => {
     document.body.removeChild(link);
   };
 
-  return <button onClick={downloadCSV}>Download CSV</button>;
+  return <button onClick={downloadCSV}>Загрузить CSV</button>;
 };
 
 export default DownloadCSV;

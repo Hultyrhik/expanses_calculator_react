@@ -10,7 +10,9 @@ export default function ExpenseList({
 }) {
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      <DownloadCSV data={listItems} fileName="employees" />
+      {listItems.length !== 0 && (
+        <DownloadCSV data={listItems} fileName="employees" />
+      )}
       {listItems.map((item) => {
         return (
           <ExpenseListItem
