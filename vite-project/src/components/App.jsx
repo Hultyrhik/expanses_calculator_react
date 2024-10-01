@@ -5,6 +5,9 @@ import ExpenseForm from "./ExpenseForm";
 import ExpenseChart from "./ExpenseChart";
 import ExpenseListSort from "./ExpenseListSort";
 import SelectCategory from "./SelectCategory";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Switch from "@mui/material/Switch";
+import CssBaseline from "@mui/material/CssBaseline";
 import { v4 as uuid } from "uuid";
 import { stringToDate } from "../funcs/utilis";
 
@@ -23,6 +26,24 @@ function App() {
   const [listItemsBuffer, setListItemsBuffer] = useState(listItems);
 
   const [filterByCategory, setFilterByCategory] = useState("All");
+
+  const [toggleDarkMode, setToggleDarkMode] = useState(true);
+
+  const toggleDarkTheme = () => {
+    setToggleDarkMode(!toggleDarkMode);
+  };
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: toggleDarkMode ? "dark" : "light",
+      primary: {
+        main: "#90caf9",
+      },
+      secondary: {
+        main: "#131052",
+      },
+    },
+  });
 
   useEffect(() => {
     localStorage.setItem("listItemData", JSON.stringify(listItems));
@@ -115,8 +136,12 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <h1>Calc</h1>
+
+      <div>Change mode</div>
+      <Switch checked={toggleDarkMode} onChange={toggleDarkTheme} />
       {listItems.length !== 0 && (
         <SelectCategory
           filterByCategory={filterByCategory}
@@ -138,10 +163,9 @@ function App() {
         categories={categories}
         filterByCategory={filterByCategory}
       />
-
       {listItemsBuffer.length !== 0 && <div>Total: {getTotal()}</div>}
       <ExpenseForm addListItem={addListItem} categories={categories} />
-    </div>
+    </ThemeProvider>
   );
 }
 

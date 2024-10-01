@@ -6,6 +6,16 @@ import { stringYearMonthToDate } from "../funcs/utilis";
 
 Chart.register(CategoryScale);
 
+const colors = [
+  "#f56f42",
+  "#f5ce42",
+  "#daf542",
+  "#2cd486",
+  "#2cd4d4",
+  "#99c5e0",
+  "#d8a2db",
+];
+
 export default function ExpenseChart({ listItems }) {
   let sumByTime = {};
 
@@ -32,13 +42,7 @@ export default function ExpenseChart({ listItems }) {
       {
         label: "Expenses ",
         data: byYearMonth.map((year) => sumByTime[year]),
-        backgroundColor: [
-          "rgba(75,192,192,1)",
-          "&quot;#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
-        ],
+        backgroundColor: colors,
         borderColor: "black",
         borderWidth: 2,
       },
@@ -62,13 +66,7 @@ export default function ExpenseChart({ listItems }) {
       {
         label: "Expenses ",
         data: byByCategory.map((catogory) => sumByCategory[catogory]),
-        backgroundColor: [
-          "rgba(75,192,192,1)",
-          "&quot;#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
-        ],
+        backgroundColor: colors,
         borderColor: "black",
         borderWidth: 2,
       },

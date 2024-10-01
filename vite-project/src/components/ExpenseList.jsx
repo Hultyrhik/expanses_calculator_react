@@ -1,5 +1,6 @@
 import List from "@mui/material/List";
 import ExpenseListItem from "./ExpenseListItem";
+import DownloadCSV from "./ DownloadCSV";
 
 export default function ExpenseList({
   listItems,
@@ -9,6 +10,7 @@ export default function ExpenseList({
 }) {
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      <DownloadCSV data={listItems} fileName="employees" />
       {listItems.map((item) => {
         return (
           <ExpenseListItem
