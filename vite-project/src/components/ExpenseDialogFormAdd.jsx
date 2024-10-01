@@ -48,17 +48,6 @@ export default function ExpenseDialogFormAdd({
       <DialogTitle>Expense</DialogTitle>
       <DialogContent>
         <DialogContentText>Please add item</DialogContentText>
-
-        {/* <TextField
-          required
-          margin="dense"
-          id="category"
-          name="category"
-          label="category"
-          type="text"
-          fullWidth
-          variant="standard"
-        /> */}
         <InputLabel id="category-label">Category</InputLabel>
         <Select
           labelId="category-label"
@@ -80,7 +69,6 @@ export default function ExpenseDialogFormAdd({
         <NumericFormat
           label="placeholder"
           value={sum}
-          // prefix="₽"
           onValueChange={(values) => {
             setSum(values.value);
           }}

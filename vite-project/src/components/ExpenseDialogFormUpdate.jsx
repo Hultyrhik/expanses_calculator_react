@@ -19,13 +19,9 @@ export default function ExpenseDialogFormUpdate({
   categories,
 }) {
   const [itemValues, setItemValues] = useState(item);
-  // console.log("itemValues", itemValues);
-
   const handleChange = (evt) => {
     const changedField = evt.target.name;
     const newValue = evt.target.value;
-    // console.log("changedField", changedField);
-    // console.log("newValue", newValue);
     setItemValues((currData) => {
       return {
         ...currData,
@@ -48,9 +44,6 @@ export default function ExpenseDialogFormUpdate({
           const description = formJson.description;
           const sum = formJson.sum;
           const date = formJson.date;
-
-          // console.log("Sum", sum);
-
           const item = {
             id: itemValues.id,
             category: category,
@@ -58,7 +51,6 @@ export default function ExpenseDialogFormUpdate({
             date: date,
             description: description,
           };
-          // console.log("updatedItem", item);
           updateItem(item);
           handleClose();
         },
@@ -67,18 +59,6 @@ export default function ExpenseDialogFormUpdate({
       <DialogTitle>Expense</DialogTitle>
       <DialogContent>
         <DialogContentText>Please add item</DialogContentText>
-        {/* <TextField
-          required
-          margin="dense"
-          id="category"
-          name="category"
-          label="category"
-          type="text"
-          fullWidth
-          variant="standard"
-          value={itemValues.category}
-          onChange={handleChange}
-        /> */}
         <Select
           labelId="category-label"
           id="category"

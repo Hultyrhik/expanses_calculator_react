@@ -13,7 +13,6 @@ import { useState, useEffect } from "react";
 const getInitialData = () => {
   const data = JSON.parse(localStorage.getItem("listItemData"));
   if (!data) return [];
-
   return data;
 };
 
@@ -24,6 +23,7 @@ function App() {
   const [listItemsBuffer, setListItemsBuffer] = useState(listItems);
 
   const [filterByCategory, setFilterByCategory] = useState("All");
+
   useEffect(() => {
     localStorage.setItem("listItemData", JSON.stringify(listItems));
   }, [listItems]);
@@ -36,8 +36,6 @@ function App() {
   };
 
   const addListItem = (li) => {
-    console.log("li", li);
-
     setListItems((prevListItems) => {
       const new_data = [
         ...prevListItems,
@@ -49,9 +47,7 @@ function App() {
           description: li.description,
         },
       ];
-      setListItemsBuffer(() => {
-        return [...new_data];
-      });
+      filterByCategoryInSelect(filterByCategory);
       return new_data;
     });
   };
@@ -59,20 +55,15 @@ function App() {
   const removeItem = (id) => {
     setListItems((prevList) => {
       const new_data = prevList.filter((item) => item.id !== id);
-      setListItemsBuffer(() => {
-        return [...new_data];
-      });
+      filterByCategoryInSelect(filterByCategory);
       return new_data;
     });
   };
 
   const updateItem = (changedItem) => {
-    // console.log("changedItem", changedItem);
     setListItems((prevList) => {
       const new_data = prevList.map((item) => {
-        // console.log("one of items", item);
         if (item.id === changedItem.id) {
-          // console.log("item.id === changedItem.id", item);
           return {
             id: changedItem.id,
             category: changedItem.category,
@@ -81,13 +72,10 @@ function App() {
             description: changedItem.description,
           };
         } else {
-          // console.log(`${item.id} === ${changedItem.id}`);
           return item;
         }
       });
-      setListItemsBuffer(() => {
-        return [...new_data];
-      });
+      filterByCategoryInSelect(filterByCategory);
       return new_data;
     });
   };
