@@ -1,3 +1,3 @@
 # expanses_calculator_react
 
-## npm start
+## cd expense_calc && npm run dev
